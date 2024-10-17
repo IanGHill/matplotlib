@@ -37,3 +37,28 @@ ax.set_aspect("equal")  # Ensure pie is drawn as a circle
 plt.title("Distribution of Immigrants from 1980 to 1985")
 # plt.legend(years[0:5]), include legend, if you donot want to pass the labels
 plt.show()
+
+#### Question: Create a pie chart representing the total immigrants proportion for each continent
+
+# Creating data for plotting pie
+df_con = df_can.groupby("Continent")["Total"].sum().reset_index()
+label = list(df_con.Continent)
+label[3] = "LAC"
+label[4] = "NA"
+print(df_con)
+
+fig, ax = plt.subplots(figsize=(10, 4))
+
+# Pie on immigrants
+ax.pie(
+    df_con["Total"],
+    colors=["gold", "blue", "lightgreen", "coral", "cyan", "red"],
+    autopct="%1.1f%%",
+    pctdistance=1.25,
+)
+
+ax.set_aspect("equal")  # Ensure pie is drawn as a circle
+
+plt.title("Continent-wise distribution of immigrants")
+ax.legend(label, bbox_to_anchor=(1, 0, 0.5, 1))
+plt.show()
