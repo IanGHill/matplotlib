@@ -37,3 +37,28 @@ ax.set_ylabel("Number of Immigrants")
 ax.set_xlabel("Years")
 
 plt.show()
+
+#### QUESTION - Create a bar plot of the 5 countries that contributed
+# the least to immigration to Canada from 1980 to 2013.
+
+# Sorting the dataframe on 'Total' in descending order
+df_can.sort_values(["Total"], ascending=True, axis=0, inplace=True)
+
+# get the top 5 entries with head function
+df_least5 = df_can.head()
+
+# resetting the index back to original way
+df_least5_bar = df_least5.reset_index()
+
+# Creating alist of names of the top 5 countries
+label = list(df_least5_bar.Country)
+# label
+
+fig, ax = plt.subplots(figsize=(10, 4))
+
+ax.bar(label, df_least5_bar["Total"], label=label)
+ax.set_title("Immigration Trend of Top 5 Countries")
+ax.set_ylabel("Number of Immigrants")
+ax.set_xlabel("Years")
+
+plt.show()
